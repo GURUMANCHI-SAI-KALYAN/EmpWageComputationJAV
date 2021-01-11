@@ -11,20 +11,21 @@ public class EmpWageComputations {
 	int empwage = 0;
 
         int empCheck = (int) Math.floor(Math.random() * 10) % 3;
-        System.out.println(empCheck);
 
-        if (empCheck == IS_FULL_TIME) {
-            System.out.println("Employee is Present.");
-	    emphr = 8;}
-
-	 else if (empCheck == IS_PART_TIME) {
-            System.out.println("Employee is Present.");
-            emphr = 4;}
-
-         else {
-            System.out.println("Employee is Absent.");
-	    emphr = 0;}
-       
+	switch (empCheck) {
+             case IS_FULL_TIME:
+	          System.out.println("Employee is Present.");
+	          emphr = 8;
+	          break;
+	     case IS_PART_TIME:
+            	  System.out.println("Employee is Present.");
+                  emphr = 4;
+		  break;
+             default:
+           	   System.out.println("Employee is Absent.");
+	    	   emphr = 0;
+           	   break;
+       }
 	empwage = emphr * EMP_RATE_HR;
 	System.out.println("Employee Wage :" + empwage);
     }
