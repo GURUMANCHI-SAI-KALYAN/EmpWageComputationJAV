@@ -7,11 +7,15 @@ public class EmpWageComputations {
 	final int IS_PART_TIME = 2;
 	final int EMP_RATE_HR = 20 ;
 	final int NUM_WORKING_DAYS = 20;
-
+	final int MAX_WORKING_HRS = 100;
 	int emphr = 0;
 	int empwage = 0;
 	int totempwage = 0;
-	for (int num = 0; num < NUM_WORKING_DAYS; num++) {
+	int totworkingdays = 0;
+	int totemphrs = 0;
+
+	while (totemphrs <= MAX_WORKING_HRS && totworkingdays < NUM_WORKING_DAYS) {
+	totworkingdays++;
         int empCheck = (int) Math.floor(Math.random() * 10) % 3;
 
 	switch (empCheck) {
@@ -28,11 +32,13 @@ public class EmpWageComputations {
 	    	   emphr = 0;
            	   break;
        }
-	empwage = emphr * EMP_RATE_HR;
-	totempwage += empwage;
+	totemphrs += emphr;
+	 System.out.println("totla days :" + totworkingdays);
+	 System.out.println("Employee hrs :" + totemphrs);
+
     }
+	totempwage = totemphrs * EMP_RATE_HR;
 	System.out.println("Employee Wage :" + totempwage);
 
   }
-
 }
