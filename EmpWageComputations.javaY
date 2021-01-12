@@ -3,16 +3,13 @@ public class EmpWageComputations {
 
         public static final int IS_FULL_TIME = 1;
 	public static final int IS_PART_TIME = 2;
-	public static final int EMP_RATE_HR = 20 ;
-	public static final int NUM_WORKING_DAYS = 20;
-	public static final int MAX_WORKING_HRS = 100;
 
-	public  static int computeEmpWage(String company, int EMP_RATE_HR, int NUM_WORING_DAYS, int MAX_WORKING_HRS) {
-	int emphr = 0;
-	int empwage = 0;
-	int totempwage = 0;
-	int totworkingdays = 0;
-	int totemphrs = 0;
+	public  static int computeEmpWage(string company, int EMP_RATE_HR, int NUM_WORKING_DAYS, int MAX_WORKINH_HRS) {
+	 int emphr = 0;
+	 int empwage = 0;
+	 int totempwage = 0;
+	 int totworkingdays = 0;
+	 int totemphrs = 0;
 
 	while (totemphrs <= MAX_WORKING_HRS && totworkingdays < NUM_WORKING_DAYS) {
 	totworkingdays++;
@@ -43,7 +40,7 @@ public class EmpWageComputations {
 
   }
 	public static void main(String[] args) {
-	computeEmpWage("max", 10, 20, 8);
-	computeEmpWage("bata", 15, 25, 5);
+	computeEmpWage("max", 10, 25, 10 );
+	cpmputeEmpWage("deloit", 15, 20, 5);
   }
 }
