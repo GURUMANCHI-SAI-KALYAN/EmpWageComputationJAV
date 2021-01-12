@@ -1,16 +1,27 @@
-
-public class EmpWageComputations {
+package com.javaprograms;
+import java.util.Random;
+  public class EmpWageComputations {
 
         public static final int IS_FULL_TIME = 1;
 	public static final int IS_PART_TIME = 2;
-	public static final int EMP_RATE_HR = 20 ;
-	public static final int NUM_WORKING_DAYS = 20;
-	public static final int MAX_WORKING_HRS = 100;
 
-	public  static int computeEmpWage(String company, int EMP_RATE_HR, int NUM_WORING_DAYS, int MAX_WORKING_HRS) {
+
+	private final String company;
+	private final int EMP_RATE_HR;
+	private final int NUM_WORKING_DAYS;
+	private final int MAX_WORKING_HRS;
+	private int totempwage;
+
+	public EmpWageComputations(String company, int EMP_RATE_HR, int NUM_WORKING_DAYS, int MAX_WORKING_HRS) {
+
+	this.company = company;
+	this.EMP_RATE_HR = EMP_RATE_HR;
+	this.NUM_WORKING_DAYS = NUM_WORKING_DAYS;
+	this.MAX_WORKING_HRS = MAX_WORKING_HRS;
+  }
+	public void computeEmpWage() {
 	int emphr = 0;
 	int empwage = 0;
-	int totempwage = 0;
 	int totworkingdays = 0;
 	int totemphrs = 0;
 
@@ -39,11 +50,19 @@ public class EmpWageComputations {
     }
 	totempwage = totemphrs * EMP_RATE_HR;
 	System.out.println("Employee Wage :" + totempwage);
-	return totempwage;
+  }
+	@Override
+	public String toString() {
+	    return "Total Emp wage for Company: " +company+" is: " + totempwage;
+	}
 
-  }
 	public static void main(String[] args) {
-	computeEmpWage("max", 10, 20, 8);
-	computeEmpWage("bata", 15, 25, 5);
-  }
+	EmpWageComputations max = new EmpWageComputations("max", 20, 5, 10);
+	EmpWageComputations bata = new EmpWageComputations("bata", 20, 5, 10);
+	max.computeEmpWage();
+	System.out.println(max);
+	bata.computeEmpWage();
+        System.out.println(bata);
+    }
+
 }
