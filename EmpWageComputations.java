@@ -1,13 +1,13 @@
+
 public class EmpWageComputations {
-    public static void main(String[] args) {
 
-        System.out.println("Welcome to Employee Wedge computation");
+        public static final int IS_FULL_TIME = 1;
+	public static final int IS_PART_TIME = 2;
+	public static final int EMP_RATE_HR = 20 ;
+	public static final int NUM_WORKING_DAYS = 20;
+	public static final int MAX_WORKING_HRS = 100;
 
-        final int IS_FULL_TIME = 1;
-	final int IS_PART_TIME = 2;
-	final int EMP_RATE_HR = 20 ;
-	final int NUM_WORKING_DAYS = 20;
-	final int MAX_WORKING_HRS = 100;
+	public  static int computeEmpWage() {
 	int emphr = 0;
 	int empwage = 0;
 	int totempwage = 0;
@@ -39,6 +39,10 @@ public class EmpWageComputations {
     }
 	totempwage = totemphrs * EMP_RATE_HR;
 	System.out.println("Employee Wage :" + totempwage);
+	return totempwage;
 
+  }
+	public static void main(String[] args) {
+	computeEmpWage();
   }
 }
