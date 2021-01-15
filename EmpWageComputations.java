@@ -1,68 +1,62 @@
-package com.javaprograms;
-import java.util.Random;
-  public class EmpWageComputations {
+public class EmpWageComputation {
+    public static final int IS_PART_TIME = 1;
+    public static final int IS_FULL_TIME = 2;
 
-        public static final int IS_FULL_TIME = 1;
-	public static final int IS_PART_TIME = 2;
+    private int numOfCompany = 0;
+    private CompanyEmpWage[] companyEmpWageBuilder;
 
-
-	private final String company;
-	private final int EMP_RATE_HR;
-	private final int NUM_WORKING_DAYS;
-	private final int MAX_WORKING_HRS;
-	private int totempwage;
-
-	public EmpWageComputations(String company, int EMP_RATE_HR, int NUM_WORKING_DAYS, int MAX_WORKING_HRS) {
-
-	this.company = company;
-	this.EMP_RATE_HR = EMP_RATE_HR;
-	this.NUM_WORKING_DAYS = NUM_WORKING_DAYS;
-	this.MAX_WORKING_HRS = MAX_WORKING_HRS;
-  }
-	public void computeEmpWage() {
-	int emphr = 0;
-	int empwage = 0;
-	int totworkingdays = 0;
-	int totemphrs = 0;
-
-	while (totemphrs <= MAX_WORKING_HRS && totworkingdays < NUM_WORKING_DAYS) {
-	totworkingdays++;
-        int empCheck = (int) Math.floor(Math.random() * 10) % 3;
-
-	switch (empCheck) {
-             case IS_FULL_TIME:
-	          System.out.println("Employee is Present.");
-	          emphr = 8;
-	          break;
-	     case IS_PART_TIME:
-            	  System.out.println("Employee is Present.");
-                  emphr = 4;
-		  break;
-             default:
-           	   System.out.println("Employee is Absent.");
-	    	   emphr = 0;
-           	   break;
-       }
-	totemphrs += emphr;
-	 System.out.println("totla days :" + totworkingdays);
-	 System.out.println("Employee hrs :" + totemphrs);
-
-    }
-	totempwage = totemphrs * EMP_RATE_HR;
-	System.out.println("Employee Wage :" + totempwage);
-  }
-	@Override
-	public String toString() {
-	    return "Total Emp wage for Company: " +company+" is: " + totempwage;
-	}
-
-	public static void main(String[] args) {
-	EmpWageComputations max = new EmpWageComputations("max", 20, 5, 10);
-	EmpWageComputations bata = new EmpWageComputations("bata", 20, 5, 10);
-	max.computeEmpWage();
-	System.out.println(max);
-	bata.computeEmpWage();
-        System.out.println(bata);
+    public EmpWageComputation() {
+        companyEmpWageArray = new CompanyEmpWage[5];
     }
 
+    private void addCompanyEmpWage(String company, int empRatePerHr, int noOfWorkingDays, int maxHrsPeronth) {
+        companyEmpWageArray[numOfCompany] = new CompanyEmpWage(company, empRatePerHr, noOfWorkingDays, maxHrsPeronth);
+        numOfCompany++;
+    }
+
+    private void computeEmpWage() {
+        for (int i = 0; i < numOfCompany; i++) {
+            companyEmpWageArray[i].setTotalEmpWage(this.computeEmpWage(companyEmpWageArray[i]));
+            System.out.println(companyEmpWageArray[i]);
+        }
+    }
+
+    public int computeEmpWage(CompanyEmpWage companyEmpWage) {
+        int empHrs = 0;
+        int totalEmpWage = 0;
+        int totalWorkingDays = 0;
+        int totalEmpHrs = 0;
+
+        while (totalEmpHrs <= companyEmpWage.maxHrsPeronth && totalWorkingDays < companyEmpWage.noOfWorkingDays) {
+            totalWorkingDays++;
+            int empCheck = (int) Math.floor(Math.random() * 10) % 3;
+            switch (empCheck) {
+                case IS_PART_TIME:
+                    empHrs = 4;
+                    break;
+                case IS_FULL_TIME:
+                    empHrs = 8;
+                    break;
+                default:
+                    empHrs = 0;
+                    break;
+            }
+            totalEmpHrs += empHrs;
+            System.out.println("Day: " + totalWorkingDays + "\tEmp Hr: " + empHrs);
+        }
+        return totalEmpHrs * companyEmpWage.empRatePerHr;
+    }
+
+    public static void main(String[] args) throws Exception {
+
+        System.out.println("Welcome to Employee Wedge Builder...");
+
+        EmpWageComputation empWageBuilder = new EmpWageComputations();
+        empWageBuilder.addCompanyEmpWage("max", 25, 7, 15);
+        empWageBuilder.addCompanyEmpWage("bata", 15, 2, 27);
+
+        empWageBuilder.computeEmpWage();
+
+    }
 }
+
